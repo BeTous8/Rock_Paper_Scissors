@@ -54,15 +54,35 @@ function playRound(humanChoice) {
         computerScore +=1;
     }
 
+
     div.append(result)
+    
     scoreUpdate(humanScore, computerScore);
+
+    if (humanScore == 5 || computerScore == 5){
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        if (humanScore > computerScore) {
+            result.textContent = `You Win the Game`
+            result.style.backgroundColor = 'white';
+            result.style.fontSize = `40px`;
+        }
+        else {
+            result.textContent = 'Game Over!';
+            result.style.backgroundColor = 'white';
+            result.style.color = `red`;
+            result.style.fontSize = `40px`;
+            
+        }
+    }
     
 }
 
 function scoreUpdate(humanScore, computerScore) {
     
     const scoreboard = document.querySelector(".scoreboard");
-    scoreboard.textContent = `your score: ${humanScore} ****** computer score: ${computerScore}`;
+    scoreboard.textContent = `Player score: ${humanScore} ****** Computer score: ${computerScore}`;
     div.append(scoreboard)
 
 }
@@ -79,6 +99,7 @@ let computerScore = 0;
 // console.log(`COMPUTER: ${computer_choice}`);
 
 const div = document.querySelector("div");
+const buttonsGroup = document.querySelector(".buttons")
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
